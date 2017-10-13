@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var logicType = ["Prime Numbers", "Fibonacii", "Fibonacci Rec", "Factorial Of", "Factorial Rec"]
+    var logicType = ["Prime Numbers", "Fibonacii", "Fibonacci Rec", "Factorial Of", "Factorial Rec", "Count minimal number of jumps from position X to Y.", "Find missing number from an array"]
 
     @IBOutlet weak var tblView: UITableView!
     override func viewDidLoad() {
@@ -92,6 +92,45 @@ class ViewController: UIViewController {
             print(newnum)
         }
     }
+    
+    //Count minimal number of jumps from position X to Y.
+    func minimalNumberOfJumpsFromTwoPositions(pos1 : Int, pos2 : Int, distance : Int) {
+        
+        if pos1 == pos2 {
+            print(0)
+            return
+        }
+        
+        let distanceToCover = pos2 - pos1
+        
+        if distanceToCover <= distance {
+            print(1)
+            return
+        }
+        
+        if distanceToCover % distance == 0 {
+            print(distanceToCover/distance)
+            return
+        } else {
+            print((distanceToCover / distance) + 1)
+        }
+
+    }
+    
+    // Find missing number from an array 
+    func findMissingNumberFromAnArray(numbers : Array<Int>) {
+        
+        if numbers.count == 0 {
+            print(0)
+            return
+        }
+        
+        var total = ((numbers.count + 1) * (numbers.count + 2))/2
+        for i in 0..<numbers.count {
+            total -= numbers[i]
+        }
+        print(total)
+    }
 }
 
 
@@ -125,6 +164,10 @@ extension ViewController : UITableViewDelegate {
             factorialOfNNumbers(nNumbers: 10)
         case 4:
             factorialRec(nNumber: 10, factNum: 1)
+        case 5:
+            minimalNumberOfJumpsFromTwoPositions(pos1: 2, pos2: 8, distance: 1)
+        case 6:
+            findMissingNumberFromAnArray(numbers: [1, 3, 6, 4, 1, 2])
         
         default:
             break
